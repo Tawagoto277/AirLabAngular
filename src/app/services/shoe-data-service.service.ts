@@ -10,10 +10,14 @@ export class ShoeDataServiceService {
 
   constructor(private http: HttpClient) { }
 
-  getSliderHome(): Observable<Slider[]>{
-    return this.http.get<Slider[]>('http://localhost:3000/sliderHome');
+  getSliderBanner(): Observable<Slider[]>{
+    return this.http.get<Slider[]>('http://localhost:3000/banner');
   };
   
+  getSliderSport(): Observable<Slider[]>{
+    return this.http.get<Slider[]>('http://localhost:3000/sport');
+  };
+
   getFilteredShoes( filters?: {
     id?: number;
     nome?: string;

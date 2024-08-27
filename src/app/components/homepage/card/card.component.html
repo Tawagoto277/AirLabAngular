@@ -1,1 +1,3 @@
-<p>card works!</p>
+<div *ngIf="image">
+  <img [src]="getFullImageUrl(image.urlLink)" alt="">
+</div>
