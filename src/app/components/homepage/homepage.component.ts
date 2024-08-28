@@ -12,7 +12,7 @@ export class HomepageComponent implements OnInit {
 
   sliders:any[] = [];
 
-  titolo:string[] = [
+  titoli:string[] = [
     'Nuovi Arrivi',
     'Best Seller - Le scelte dei nostri Clienti',
     'Sport',
