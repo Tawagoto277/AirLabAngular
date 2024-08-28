@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Prodotti, Slider } from '../models/shoeData';
+import { Prodotti } from '../models/shoeData';
 
 @Injectable({
   providedIn: 'root'
@@ -10,12 +10,12 @@ export class ShoeDataServiceService {
 
   constructor(private http: HttpClient) { }
 
-  getSliderBanner(): Observable<Slider[]>{
-    return this.http.get<Slider[]>('http://localhost:3000/banner');
+  getSliderBanner(): Observable<any[]>{
+    return this.http.get<any[]>('http://localhost:3000/banner');
   };
   
-  getSliderSport(): Observable<Slider[]>{
-    return this.http.get<Slider[]>('http://localhost:3000/sport');
+  getSliderSport(): Observable<any[]>{
+    return this.http.get<any[]>('http://localhost:3000/sport');
   };
 
   getFilteredShoes( filters?: {
@@ -59,7 +59,7 @@ export class ShoeDataServiceService {
           params = params.set('immagine', filters.immagine);
         };
         if(filters.nuovo_arrivi !== undefined){
-          params = params.set('nuovi_arrivo', filters.nuovo_arrivi.toString());
+          params = params.set('nuovo_arrivi', filters.nuovo_arrivi.toString());
         };
         if(filters.best_seller !== undefined){
           params = params.set('best_seller', filters.best_seller.toString());

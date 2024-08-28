@@ -16,8 +16,3 @@ export interface Prodotti {
   nuovo_arrivi?: boolean
   best_seller?: number
 }
-
-export interface Slider {
-  nome: string
-  urlLink: string
-}

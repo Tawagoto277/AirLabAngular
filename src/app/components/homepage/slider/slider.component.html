@@ -1,0 +1,15 @@
+<div class="slider-container">
+  <div class="slider-head">
+    <h2>
+      {{title}}
+    </h2>
+    <button class="prev" (click)="prevSlide()" type="button">&#10094;</button>
+    <button class="next" (click)="nextSlide()" type="button">&#10095;</button>
+  </div>
+  <div class="slider-body" #sliderBody>
+    <div class="slider-wrapper" #sliderWrapper>
+      <app-card *ngFor="let i of slider"
+        [image]="i"></app-card>
+    </div>
+  </div>
+</div>

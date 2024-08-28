@@ -1,33 +1,5 @@
-<div class="slider-container">
-  <div class="slider-head">
-    <h2>
-      Membership
-    </h2>
-    <button class="prev" (click)="prevSlide()" type="button">&#10094;</button>
-    <button class="next" (click)="nextSlide()" type="button">&#10095;</button>
-  </div>
-  <div class="slider-body" #sliderBody>
-    <div class="slider-wrapper" #sliderWrapper>
-      <app-card
-      *ngFor="let b of banners"
-      [image]="b"></app-card>
-    </div>
-  </div>
-</div>
-
-<div class="slider-container">
-  <div class="slider-head">
-    <h2>
-      Membership
-    </h2>
-    <button class="prev" (click)="prevSlide()" type="button">&#10094;</button>
-    <button class="next" (click)="nextSlide()" type="button">&#10095;</button>
-  </div>
-  <div class="slider-body" #sliderBody>
-    <div class="slider-wrapper" #sliderWrapper>
-      <app-card
-      *ngFor="let b of banners"
-      [image]="b"></app-card>
-    </div>
-  </div>
+<div *ngFor="let s of sliders,let i = index ">
+  <app-slider
+    [slider]="s"
+    [title]="titolo[i]"></app-slider>
 </div>

@@ -1,6 +1,6 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ShoeDataServiceService } from '../../services/shoe-data-service.service';
-import { Prodotti, Slider } from '../../models/shoeData';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-homepage',
@@ -9,33 +9,30 @@ import { Prodotti, Slider } from '../../models/shoeData';
 })
 export class HomepageComponent implements OnInit {
   constructor(public sds : ShoeDataServiceService ){  }
-  @ViewChild('sliderWrapper') sliderWrapper!: ElementRef<HTMLDivElement>;
-  @ViewChild('sliderBody') sliderBody!: ElementRef<HTMLDivElement>;
 
-  banners:Slider[] = [];
+  sliders:any[] = [];
 
-  ngOnInit(): void {
-    this.sds.getSliderBanner().subscribe(res => {
-      console.log(res);
-      this.banners = res;
-    })
-  }
+  titolo:string[] = [
+    'Nuovi Arrivi',
+    'Best Seller - Le scelte dei nostri Clienti',
+    'Sport',
+    'Membership'];
 
-  getFullImageUrl(imagePath: string): string {
-    const baseUrl = 'http://localhost:3000';
-    return `${baseUrl}${imagePath}`;
-  }
+  ngOnInit(): void {    
+    const requests = [
+      this.sds.getFilteredShoes({nuovo_arrivi : true}),
+      this.sds.getFilteredShoes({best_seller : 5}),
+      this.sds.getSliderSport(),
+      this.sds.getSliderBanner(),
+    ];
 
-  scrollAmount : number = 620;
-  // lunghezza immagine
+    // serva a fare le richieste http tutte assieme
+    forkJoin(requests).subscribe(res => {
+      res.forEach(res => {
+        this.sliders.push(res);
+      })
+    });
 
-  prevSlide(){
-    const sliderWrapper = this.sliderWrapper.nativeElement;
-    sliderWrapper.scrollBy({ left: -this.scrollAmount, behavior: 'smooth' });
-  }
-
-  nextSlide(){
-    const sliderWrapper = this.sliderWrapper.nativeElement;
-    sliderWrapper.scrollBy({ left: this.scrollAmount, behavior: 'smooth' });
+    console.log(this.sliders);
   }
 }
