@@ -11,6 +11,7 @@ import { CardComponent } from './components/homepage/card/card.component';
 import { SliderComponent } from './components/homepage/slider/slider.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ProductComponent } from './components/product/product.component';
+import { CardShoesComponent } from './components/sidebar/card-shoes/card-shoes.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ProductComponent } from './components/product/product.component';
     CardComponent,
     SliderComponent,
     SidebarComponent,
-    ProductComponent
+    ProductComponent,
+    CardShoesComponent
   ],
   imports: [
     BrowserModule,
