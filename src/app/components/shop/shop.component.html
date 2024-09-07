@@ -1,0 +1,35 @@
+<section>
+  <form [formGroup]="filtroForm">
+    <label for="nome">Nome:</label>
+    <input id="nome" formControlName="nome" type="text" placeholder="Cerca per nome">
+  
+    <label for="categoria">Categoria:</label>
+    <select id="categoria" formControlName="categoria">
+      <option value="">Tutte</option>
+      <option value="Sneakers">Sneakers</option>
+      <option value="Running">Running</option>
+      <option value="Basket">Basket</option>
+    </select>
+
+    <label for="taglie">Taglie Disponibili:</label>
+    <input id="taglie" formControlName="taglie_disponibili" type="text" placeholder="Inserisci taglie separate da virgola">
+  
+    <label for="colori">Colori Disponibili:</label>
+    <input id="colori" formControlName="colori_disponibili" type="text" placeholder="Inserisci colori separati da virgola">
+  
+    <label>
+      <input type="checkbox" formControlName="best_seller"> Best Seller
+    </label>
+  
+    <label>
+      <input type="checkbox" formControlName="nuovo_arrivi"> Nuovi Arrivi
+    </label>
+  </form>
+</section>
+<section>
+  <ul>
+    <li *ngFor="let product of products">
+      {{ product.nome }} - {{ product.prezzo }} €
+    </li>
+  </ul>
+</section>

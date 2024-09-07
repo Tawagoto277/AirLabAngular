@@ -1,5 +1,5 @@
 <div *ngIf="image">
-  <a [routerLink]="['/Shous', productId]">
-    <img [src]="getFullImageUrl(image.immagine)" [alt]="image.nome">
+  <a [routerLink]="['shop', productId]">
+    <img [src]="sds.getFullImageUrl(image.immagine)" [alt]="image.nome">
   </a>
 </div>

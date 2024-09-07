@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from './components/homepage/homepage.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { ProductComponent } from './components/product/product.component';
+import { ShopComponent } from './components/shop/shop.component';
 
 const routes: Routes = [
-  {path : 'shop', component: SidebarComponent},
+  {path : 'shop', component: ShopComponent},
+  {path : 'shop/:id', component: ShopComponent},
   {path : '', component: HomepageComponent},
   {path : '**', component: HomepageComponent},
 ];

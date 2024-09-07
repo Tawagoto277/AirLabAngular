@@ -11,16 +11,11 @@ export class CardComponent implements OnInit{
   
   constructor(public sds : ShoeDataServiceService, private route: ActivatedRoute ){ }
   
+  @Input()
+  image?:any
+
   productId: string | null = null;
   ngOnInit(): void {
     this.productId = this.route.snapshot.paramMap.get('id'); 
-  }
-
-  @Input()
-  image?:any
-    
-  getFullImageUrl(imagePath: string): string {
-    const baseUrl = 'http://localhost:3000';
-    return `${baseUrl}${imagePath}`;
   }
 }

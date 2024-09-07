@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { provideHttpClient } from "@angular/common/http"
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,9 +11,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { CardComponent } from './components/homepage/card/card.component';
 import { SliderComponent } from './components/homepage/slider/slider.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { ProductComponent } from './components/product/product.component';
-import { CardShoesComponent } from './components/sidebar/card-shoes/card-shoes.component';
+import { ShopComponent } from './components/shop/shop.component';
 
 @NgModule({
   declarations: [
@@ -21,13 +21,13 @@ import { CardShoesComponent } from './components/sidebar/card-shoes/card-shoes.c
     HomepageComponent,
     CardComponent,
     SliderComponent,
-    SidebarComponent,
-    ProductComponent,
-    CardShoesComponent
+    ShopComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     provideHttpClient()
