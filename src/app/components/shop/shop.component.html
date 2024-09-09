@@ -1,35 +1,36 @@
-<section>
-  <form [formGroup]="filtroForm">
-    <label for="nome">Nome:</label>
-    <input id="nome" formControlName="nome" type="text" placeholder="Cerca per nome">
-  
-    <label for="categoria">Categoria:</label>
-    <select id="categoria" formControlName="categoria">
-      <option value="">Tutte</option>
-      <option value="Sneakers">Sneakers</option>
-      <option value="Running">Running</option>
-      <option value="Basket">Basket</option>
-    </select>
+<form #filterForm="ngForm">
+  <!-- Filtro per nome del prodotto -->
+  <div>
+    <label for="name">Nome Prodotto</label>
+    <input type="text" id="name" name="productName"
+      [(ngModel)]="filters.nome"
+        placeholder="Cerca per nome">
+  </div>
 
-    <label for="taglie">Taglie Disponibili:</label>
-    <input id="taglie" formControlName="taglie_disponibili" type="text" placeholder="Inserisci taglie separate da virgola">
+  <!-- Filtro per categoria -->
+
+  <div>
+    <label for="category">Categoria</label>
+    <select name="category" id="category" [(ngModel)]="filters.categoria">
+      <option value="">Tutte</option>
+      <option [value]="c" *ngFor="let c of categories">{{c}}</option>
+    </select>
+  </div>
+
+  <!-- Filtro per colore -->
+
+  <div>
+    <label>Colori</label>
+    <div *ngFor="let color of colors">
+      <input type="checkbox" [value]="color" (change)="onColorChange($event)" /> {{ color }}
+    </div>
+  </div>
   
-    <label for="colori">Colori Disponibili:</label>
-    <input id="colori" formControlName="colori_disponibili" type="text" placeholder="Inserisci colori separati da virgola">
-  
-    <label>
-      <input type="checkbox" formControlName="best_seller"> Best Seller
-    </label>
-  
-    <label>
-      <input type="checkbox" formControlName="nuovo_arrivi"> Nuovi Arrivi
-    </label>
-  </form>
-</section>
-<section>
-  <ul>
-    <li *ngFor="let product of products">
-      {{ product.nome }} - {{ product.prezzo }} €
-    </li>
-  </ul>
-</section>
+  <!-- Filtro per taglia -->
+
+  <button type="button" (click)="applyFilters()">Applica Filtro</button>
+</form>
+
+<div *ngFor="let product of filteredProducts">
+  <p>{{product.nome}}</p>
+</div>
