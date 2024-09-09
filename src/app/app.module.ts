@@ -13,6 +13,8 @@ import { CardComponent } from './components/homepage/card/card.component';
 import { SliderComponent } from './components/homepage/slider/slider.component';
 import { ShopComponent } from './components/shop/shop.component';
 import { CardPComponent } from './components/shop/card-p/card-p.component';
+import { StarRatingPipe } from './pipe/star-rating.pipe';
+import { ProductComponent } from './components/product/product.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { CardPComponent } from './components/shop/card-p/card-p.component';
     SliderComponent,
     ShopComponent,
     CardPComponent,
+    StarRatingPipe,
+    ProductComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,33 @@
+.card-p{
+  max-width: 400px;
+  border: .5px solid rgb(172, 169, 169);
+  position: relative;
+  
+  a{
+    text-decoration: none; 
+    color: black; 
+
+    img{
+      width: 400px;
+    }
+
+    .description{
+      padding: 10px;
+      position: absolute;
+      bottom: 0;
+      display: grid;
+      grid-gap: 10px;
+      grid-template-columns: 3fr 1fr;
+      grid-template-areas: 
+        "titolo rating"
+        "desc desc"
+        "prezzo cat";
+
+      .pNome{grid-area: titolo;}
+      .pRating{grid-area: rating;}
+      .pDesc{grid-area: desc;}
+      .pPrezzo{grid-area: prezzo;}
+      .pCat{grid-area: cat;}
+    }
+  }
+}

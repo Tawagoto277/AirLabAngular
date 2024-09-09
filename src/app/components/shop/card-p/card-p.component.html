@@ -1,1 +1,12 @@
-<p>card-p works!</p>
+<div class="card-p" *ngIf="product">
+  <a [routerLink]="['product', product.id]">
+    <img [src]="sds.getFullImageUrl(product.immagine)" [alt]="product.nome">
+    <div class="description">
+      <p class="pNome">{{product.nome}}</p> 
+      <p class="pRating">{{product.best_seller | starRating}}</p>
+      <p class="pDesc">{{product.descrizione}}</p>
+      <p class="pPrezzo">{{product.prezzo | currency:'EUR':'symbol'}}</p>
+      <p class="pCat">{{product.categoria}}</p>
+    </div>
+  </a>
+</div>
