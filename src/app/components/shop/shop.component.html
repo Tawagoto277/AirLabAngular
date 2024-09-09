@@ -21,13 +21,38 @@
 
   <div>
     <label>Colori</label>
-    <div *ngFor="let color of colors">
-      <input type="checkbox" [value]="color" (change)="onColorChange($event)" /> {{ color }}
+    <div *ngFor="let color of colors" style="border: 1px solid black;">
+      <input type="checkbox" [value]="color" (change)="onColorChange($event)"/> {{ color }}
     </div>
   </div>
   
   <!-- Filtro per taglia -->
 
+  <div>
+    <label>Taglie</label>
+    <div *ngFor="let size of sizes" style="border: 1px solid black;">
+      <input type="checkbox" [value]="size" (change)="onSizesChange($event)"/> {{ size }}
+    </div>
+  </div>
+
+  <!-- Filtro per Best Seller  -->
+
+  <div>
+    <label for="bSeller">Recenzioni clienti</label>
+    <select name="bSeller" id="bSeller" [(ngModel)]="filters.best_seller">
+      <option value="">Tutte</option>
+      <option [value]="bS" *ngFor="let bS of bestSeller">{{bS}}</option>
+    </select>
+  </div>
+
+  <!-- Filtro per Nuovi arrivi  -->
+  <div>
+    <label>
+      <input type="checkbox" name="nuovoArrivi" [(ngModel)]="filters.nuovo_arrivi" (change)="onNewArrivalsChange($event)"/> Nuovi Arrivi
+    </label>
+  </div>
+
+  <!-- Bottono per avviare la ricerca -->
   <button type="button" (click)="applyFilters()">Applica Filtro</button>
 </form>
 
