@@ -13,9 +13,9 @@ export class ShopComponent implements OnInit{
 
   products : Prodotto[] = [];
 
-  categories: String[] = [];
-  colors:String[] = []
-  sizes:String[]=[];
+  categories: string[] = [];
+  colors:string[] = []
+  sizes:string[]=[];
   bestSeller:number[]=[];
 
   filters:Filtro = {
@@ -35,10 +35,10 @@ export class ShopComponent implements OnInit{
         this.products = p;
       };
 
-      this.setCategory();
-      this.setColor();
-      this.setSize();
-      this.setBestSeller();
+      this.setUniqueValues<string>(this.products, 'categoria', this.categories);
+      this.setUniqueValues<number>(this.products, 'best_seller', this.bestSeller);
+      this.setUniqueValues<string>(this.products, 'colori_disponibili', this.colors);
+      this.setUniqueValues<string>(this.products, 'taglie_disponibili', this.sizes);
     });
   };
 
@@ -70,48 +70,66 @@ export class ShopComponent implements OnInit{
     return matchsName && matchsCategory && matchsColor && matchSize && matchsBSeller && matchsNuovoArrivi;
   });};
 
-  setCategory(){
-    const categorySet = new Set<string>();
+  // setCategory(){
+  //   const categorySet = new Set<string>();
     
-    this.products.forEach(product => {
-      categorySet.add(product.categoria);      
-    });
+  //   this.products.forEach(product => {
+  //     categorySet.add(product.categoria);      
+  //   });
 
-    this.categories = Array.from(categorySet).sort();
-  };
+  //   this.categories = Array.from(categorySet).sort();
+  // };
   
-  setBestSeller(){
-    const bSellerSet = new Set<number>();
+  // setBestSeller(){
+  //   const bSellerSet = new Set<number>();
     
-    this.products.forEach(product => {
-      bSellerSet.add(product.best_seller);      
-    });
+  //   this.products.forEach(product => {
+  //     bSellerSet.add(product.best_seller);      
+  //   });
 
-    this.bestSeller = Array.from(bSellerSet).sort();
-  };
+  //   this.bestSeller = Array.from(bSellerSet).sort();
+  // };
 
-  setColor(){
-    const colorSet = new Set<string>();
+  // setColor(){
+  //   const colorSet = new Set<string>();
 
-    this.products.forEach(product => {
-      product.colori_disponibili.forEach( pColor => {        
-        colorSet.add(pColor);
-      });
-    });
+  //   this.products.forEach(product => {
+  //     product.colori_disponibili.forEach( pColor => {        
+  //       colorSet.add(pColor);
+  //     });
+  //   });
     
-    this.colors = Array.from(colorSet).sort();
-  };
+  //   this.colors = Array.from(colorSet).sort();
+  // };
 
-  setSize(){
-    const sizeSet = new Set<string>();
+  // setSize(){
+  //   const sizeSet = new Set<string>();
 
-    this.products.forEach(product => {
-      product.taglie_disponibili.forEach( tSize => {
-        sizeSet.add(tSize);
-      });
+  //   this.products.forEach(product => {
+  //     product.taglie_disponibili.forEach( tSize => {
+  //       sizeSet.add(tSize);
+  //     });
+  //   });
+
+  //   this.sizes = Array.from(sizeSet).sort();
+  // };
+
+  setUniqueValues<T>(products: Prodotto[], property: keyof Prodotto, targetArray: T[]): void {
+    const uniqueSet = new Set<T>();
+  
+    products.forEach(product => {
+      const value = product[property];
+  
+      if (Array.isArray(value)) {
+        value.forEach(item => uniqueSet.add(item as T));
+      } else {
+        uniqueSet.add(value as T);
+      }
     });
-
-    this.sizes = Array.from(sizeSet).sort();
+  
+    // Ordina i valori unici e li assegna al target array
+    targetArray.length = 0; // Svuota l'array originale
+    targetArray.push(...Array.from(uniqueSet).sort());
   };
 
   onColorChange(event : any){
