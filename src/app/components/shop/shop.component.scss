@@ -1,5 +1,46 @@
+form{
+  width: 80%;
+  margin: 0 auto;
+
+  label{
+    margin: 5px 10px;
+  }
+
+  hr{
+    margin: 5px;
+  }
+
+  .box{
+    line-height: 2em;
+
+    input[type=text]{
+      border: none;
+      line-height: 2em;
+
+      &:hover{
+        outline: red;
+      }
+    }
+  }
+
+  .checkBox{
+    padding: 0 10px;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  button{
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 15px;
+    font-size: 1em;
+    line-height: 1.5em;
+  }
+}
+
 .container{
-  margin: 25px 0;
+  width: 95%;
+  margin: 30px auto;
   display: grid;
   justify-items: center;
   grid-template-columns: repeat(5, 1fr);

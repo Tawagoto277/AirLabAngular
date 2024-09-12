@@ -1,1 +1,27 @@
-<p>product works!</p>
+<section *ngIf="product">
+  <div class="divImg">
+    <p class="rating">{{product.best_seller | starRating}}</p>
+    <img [src]="this.sds.getFullImageUrl(product.immagine)" [alt]="product.nome">
+  </div>
+  <h1>{{product.nome}}</h1>
+  <p class="cat">{{product.categoria}}</p>
+  <p class="prz">{{product.prezzo | currency:'EUR':'symbol'}}</p>
+  <div class="divColor">
+    <ul style="display: flex; justify-content: space-around;">
+      <li *ngFor="let c of product.colori_disponibili">
+        <input style="display: none;" type="radio" [name]="c" [id]="c">
+        <label style="cursor: pointer;" [innerHTML]="c | color" [for]="c">{{c}}</label>
+      </li>
+    </ul>
+  </div>
+  <div class="divTaglia">
+    <ul style="display: flex; justify-content: space-around;">
+      <li *ngFor="let t of product.taglie_disponibili">
+        <input style="display: none;" type="radio" [name]="t" [id]="t">
+        <label style="cursor: pointer;" [for]="t">{{t}}</label>
+      </li>
+    </ul>
+  </div>
+  <button class="btnCart">Aggiungi al carrello</button>
+  <p class="desc">{{product.descrizione}}</p>
+</section>

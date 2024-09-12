@@ -10,7 +10,7 @@ import { Filtro, Prodotto } from '../../models/shoeData';
 })
 export class ProductComponent implements OnInit{
 
-  constructor(private sds : ShoeDataServiceService, private route: ActivatedRoute){ }
+  constructor(public sds : ShoeDataServiceService, private route: ActivatedRoute){ }
   
   product: Prodotto | null = null;
   paginaId: string | null = null;

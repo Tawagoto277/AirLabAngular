@@ -7,6 +7,10 @@
     text-decoration: none; 
     color: black; 
 
+    &:hover{
+      outline: 4px solid skyblue;
+    }
+
     img{
       width: 400px;
     }

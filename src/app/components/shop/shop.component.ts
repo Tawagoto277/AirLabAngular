@@ -39,7 +39,8 @@ export class ShopComponent implements OnInit{
       this.setUniqueValues<number>(this.products, 'best_seller', this.bestSeller);
       this.setUniqueValues<string>(this.products, 'colori_disponibili', this.colors);
       this.setUniqueValues<string>(this.products, 'taglie_disponibili', this.sizes);
-    });
+      
+    });    
   };
 
   applyFilters(){this.filteredProducts = this.products.filter(product => {
@@ -63,10 +64,11 @@ export class ShopComponent implements OnInit{
 
     const matchsNuovoArrivi = this.filters.nuovo_arrivi !== undefined ? product.nuovo_arrivi === this.filters.nuovo_arrivi : true; 
 
-    console.log(matchsNuovoArrivi);
-    console.log(product.nuovo_arrivi);
+    // console.log(matchsNuovoArrivi);
+    // console.log(product.nuovo_arrivi);
     
-
+    console.log(product.nome, product.colori_disponibili);
+    
     return matchsName && matchsCategory && matchsColor && matchSize && matchsBSeller && matchsNuovoArrivi;
   });};
 

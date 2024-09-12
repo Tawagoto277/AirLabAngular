@@ -1,52 +1,56 @@
 <form #filterForm="ngForm">
   <!-- Filtro per nome del prodotto -->
-  <div>
+  <div class="box">
     <label for="name">Nome Prodotto</label>
     <input type="text" id="name" name="productName"
       [(ngModel)]="filters.nome"
         placeholder="Cerca per nome">
   </div>
 
+  <hr>
   <!-- Filtro per categoria -->
 
-  <div>
+  <div class="box">
     <label for="category">Categoria</label>
     <select name="category" id="category" [(ngModel)]="filters.categoria">
-      <option value="">Tutte</option>
+      <option value="" selected>Tutte</option>
       <option [value]="c" *ngFor="let c of categories">{{c}}</option>
     </select>
   </div>
 
+  <hr>
   <!-- Filtro per colore -->
 
-  <div>
-    <label>Colori</label>
-    <div *ngFor="let color of colors" style="border: 1px solid black;">
+  <label>Colori</label>
+  <div class="box checkBox">
+    <div *ngFor="let color of colors">
       <input type="checkbox" [value]="color" (change)="onColorChange($event)"/> {{ color }}
     </div>
   </div>
   
+  <hr>
   <!-- Filtro per taglia -->
 
-  <div>
-    <label>Taglie</label>
-    <div *ngFor="let size of sizes" style="border: 1px solid black;">
+  <label>Taglie</label>
+  <div class="box checkBox">
+    <div *ngFor="let size of sizes">
       <input type="checkbox" [value]="size" (change)="onSizesChange($event)"/> {{ size }}
     </div>
   </div>
 
+  <hr>
   <!-- Filtro per Best Seller  -->
 
-  <div>
-    <label for="bSeller">Recenzioni clienti</label>
+  <div class="box">
+    <label for="bSeller">Recensioni clienti</label>
     <select name="bSeller" id="bSeller" [(ngModel)]="filters.best_seller">
-      <option value="">Tutte</option>
+      <option value="" selected>Tutte</option>
       <option [value]="bS" *ngFor="let bS of bestSeller">{{bS}}</option>
     </select>
   </div>
 
   <!-- Filtro per Nuovi arrivi  -->
-  <div>
+  <div class="box">
     <label>
       <input type="checkbox" name="nuovoArrivi" [(ngModel)]="filters.nuovo_arrivi" (change)="onNewArrivalsChange($event)"/> Nuovi Arrivi
     </label>

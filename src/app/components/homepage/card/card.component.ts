@@ -1,21 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ShoeDataServiceService } from '../../../services/shoe-data-service.service';
 import { ActivatedRoute } from '@angular/router';
+import { Prodotto } from '../../../models/shoeData';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss'
 })
-export class CardComponent implements OnInit{
+export class CardComponent{
   
   constructor(public sds : ShoeDataServiceService, private route: ActivatedRoute ){ }
   
   @Input()
-  image?:any
-
-  productId: string | null = null;
-  ngOnInit(): void {
-    this.productId = this.route.snapshot.paramMap.get('id'); 
-  }
+  image?:Prodotto
 }
