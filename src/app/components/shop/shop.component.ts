@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoeDataServiceService } from '../../services/shoe-data-service.service';
 import { Filtro, Prodotto } from '../../models/shoeData';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 
 @Component({
   selector: 'app-shop',
@@ -9,7 +10,10 @@ import { Filtro, Prodotto } from '../../models/shoeData';
 })
 export class ShopComponent implements OnInit{
 
-  constructor(private sds : ShoeDataServiceService){ }
+  constructor(
+      private sds : ShoeDataServiceService, 
+      private route : ActivatedRoute,
+      private router: Router){ }
 
   products : Prodotto[] = [];
 
@@ -30,6 +34,20 @@ export class ShopComponent implements OnInit{
   filteredProducts = [...this.products];
 
   ngOnInit(): void {
+    //Per posrtate l'utente in cima
+    this.router.events.subscribe((event) => {
+      if(event instanceof NavigationEnd){
+        //Scorri in cima alla pagina
+        window.scrollTo(0, 0);
+      }
+    })
+    
+    this.route.params.subscribe(params => {
+      if(params['category']){
+        this.filters.categoria = params['category'];
+      };
+    });
+    
     this.sds.getFilteredShoes().subscribe(p => {
       if(Array.isArray(p)){
         this.products = p;
@@ -134,39 +152,56 @@ export class ShopComponent implements OnInit{
     targetArray.push(...Array.from(uniqueSet).sort());
   };
 
-  onColorChange(event : any){
-    const color = event.target.value;
-    const isChecked = event.target.checked;
+  // onColorChange(event : any){
+  //   const color = event.target.value;
+  //   const isChecked = event.target.checked;
 
-    if(isChecked){
-      if (!this.filters.colori_disponibili) {
-        this.filters.colori_disponibili = [];
-      };
-      this.filters.colori_disponibili?.push(color);
-    }else{
-      const index = this.filters.colori_disponibili?.indexOf(color);
-      if(index! > -1){
-        this.filters.colori_disponibili?.splice(index!, 1);
-      };
-    };
-  };
+  //   if(isChecked){
+  //     if (!this.filters.colori_disponibili) {
+  //       this.filters.colori_disponibili = [];
+  //     };
+  //     this.filters.colori_disponibili?.push(color);
+  //   }else{
+  //     const index = this.filters.colori_disponibili?.indexOf(color);
+  //     if(index! > -1){
+  //       this.filters.colori_disponibili?.splice(index!, 1);
+  //     };
+  //   };
+  // };
   
-  onSizesChange(event : any){
-    const size = event.target.value;
+  // onSizesChange(event : any){
+  //   const size = event.target.value;
+  //   const isChecked = event.target.checked;
+
+  //   if(isChecked){
+  //     if (!this.filters.taglie_disponibili) {
+  //       this.filters.taglie_disponibili = [];
+  //     };
+  //     this.filters.taglie_disponibili?.push(size);
+  //   }else{
+  //     const index = this.filters.taglie_disponibili?.indexOf(size);
+  //     if(index! > -1){
+  //       this.filters.taglie_disponibili?.splice(index!, 1);
+  //     };
+  //   };
+  // };
+
+  onFilterChange(event: any, filterType: 'colori_disponibili' | 'taglie_disponibili') {
+    const value = event.target.value;
     const isChecked = event.target.checked;
 
-    if(isChecked){
-      if (!this.filters.taglie_disponibili) {
-        this.filters.taglie_disponibili = [];
-      };
-      this.filters.taglie_disponibili?.push(size);
-    }else{
-      const index = this.filters.taglie_disponibili?.indexOf(size);
-      if(index! > -1){
-        this.filters.taglie_disponibili?.splice(index!, 1);
-      };
-    };
-  };
+    if (isChecked) {
+      if (!this.filters[filterType]) {
+        this.filters[filterType] = [];
+      }
+      this.filters[filterType].push(value);
+    } else {
+      const index = this.filters[filterType]?.indexOf(value);
+      if (index! > -1) {
+        this.filters[filterType]?.splice(index!, 1);
+      }
+    }
+  }
 
   onNewArrivalsChange(event: any) {
     const isChecked = event.target.checked;

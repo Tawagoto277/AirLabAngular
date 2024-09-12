@@ -8,10 +8,14 @@ import { Prodotto } from '../../../models/shoeData';
   templateUrl: './card.component.html',
   styleUrl: './card.component.scss'
 })
-export class CardComponent{
+export class CardComponent implements OnInit{
   
   constructor(public sds : ShoeDataServiceService, private route: ActivatedRoute ){ }
   
+  ngOnInit(): void {
+    console.log(this.image);
+  }
+  
   @Input()
-  image?:Prodotto
+  image?:any
 }

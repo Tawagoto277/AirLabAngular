@@ -24,7 +24,7 @@
   <label>Colori</label>
   <div class="box checkBox">
     <div *ngFor="let color of colors">
-      <input type="checkbox" [value]="color" (change)="onColorChange($event)"/> {{ color }}
+      <input type="checkbox" [value]="color" (change)="onFilterChange($event, 'colori_disponibili')"/> {{ color }}
     </div>
   </div>
   
@@ -34,7 +34,7 @@
   <label>Taglie</label>
   <div class="box checkBox">
     <div *ngFor="let size of sizes">
-      <input type="checkbox" [value]="size" (change)="onSizesChange($event)"/> {{ size }}
+      <input type="checkbox" [value]="size" (change)="onFilterChange($event, 'taglie_disponibili')"/> {{ size }}
     </div>
   </div>
 

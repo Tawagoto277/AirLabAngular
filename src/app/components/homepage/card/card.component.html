@@ -1,5 +1,12 @@
 <div *ngIf="image">
-  <a [routerLink]="['shop/product', image.id]">
-    <img [src]="sds.getFullImageUrl(image.immagine)" [alt]="image.nome">
-  </a>
+  <ng-container *ngIf="image.categoria; else noCategory">
+    <a [routerLink]="['shop/product', image.id]">
+      <img [src]="sds.getFullImageUrl(image.immagine)" [alt]="image.nome">
+    </a>
+  </ng-container>
+  <ng-template #noCategory>
+    <a [routerLink]="['shop/category', image.category]">
+      <img [src]="sds.getFullImageUrl(image.immagine)" alt="">
+    </a>
+  </ng-template>
 </div>
