@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Filtro, Prodotto } from '../../models/shoeData';
+import { CartItem, Filtro, Prodotto } from '../../models/shoeData';
 import { CartService } from '../../services/cart-service.service';
 
 @Component({
@@ -11,7 +11,7 @@ export class CartComponent implements OnInit{
   
   constructor(private cs : CartService){}
 
-  cartItems: Prodotto[] = [];
+  cartItems: CartItem[] = [];
 
   ngOnInit(): void {
     this.loadCartItems();
@@ -23,11 +23,12 @@ export class CartComponent implements OnInit{
     });
   };
 
-  addToCart(product: Prodotto): void{
-    this.cs.addToCart(product).subscribe(()=> {
-      this.loadCartItems();
-    });
-  };
+  // Ha senso solo per aumentare i prodotti gia nel carrello
+  // addToCart(product: Prodotto): void{
+  //   this.cs.updateCartItem(product).subscribe(()=> {
+  //     this.loadCartItems();
+  //   });
+  // };
   
   removeFromCart(productId: number): void{
     this.cs.removeFromCart(productId).subscribe(()=> {

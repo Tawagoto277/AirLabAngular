@@ -9,7 +9,7 @@
   <div class="divColor">
     <ul style="display: flex; justify-content: space-around;">
       <li *ngFor="let c of product.colori_disponibili">
-        <input style="display: none;" type="radio" [name]="c" [id]="c">
+        <input style="display: none;" type="radio" [name]="c" [id]="c" (change)="selectColor(c)">
         <label style="cursor: pointer;" [innerHTML]="c | color" [for]="c">{{c}}</label>
       </li>
     </ul>
@@ -17,11 +17,11 @@
   <div class="divTaglia">
     <ul style="display: flex; justify-content: space-around;">
       <li *ngFor="let t of product.taglie_disponibili">
-        <input style="display: none;" type="radio" [name]="t" [id]="t">
+        <input style="display: none;" type="radio" [name]="t" [id]="t" (change)="selectSize(t)">
         <label style="cursor: pointer;" [for]="t">{{t}}</label>
       </li>
     </ul>
   </div>
-  <button class="btnCart" >Aggiungi al carrello</button>
+  <button class="btnCart" [disabled]="!selectedColor || !selectedSize" (click)="addToCart()">Aggiungi al carrello</button>
   <p class="desc">{{product.descrizione}}</p>
 </section>

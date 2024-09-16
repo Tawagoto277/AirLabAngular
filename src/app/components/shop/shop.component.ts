@@ -13,7 +13,8 @@ export class ShopComponent implements OnInit{
   constructor(
       private sds : ShoeDataServiceService, 
       private route : ActivatedRoute,
-      private router: Router){ }
+      private router: Router
+  ){ }
 
   products : Prodotto[] = [];
 
