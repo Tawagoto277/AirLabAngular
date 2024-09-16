@@ -53,24 +53,20 @@ section:nth-child(2){
         text-align: center;
         align-content: center;
 
-        form{
-          width: 100%;
+        input{
+          width: calc(100% - 50px); height: 100%;
+          border: none;
+          outline: none;
+          font-size: 1em;
+          background-color: transparent;
+          position: absolute;
+          top: 0; right: 0;
+        }
 
-          input{
-            width: calc(100% - 50px); height: 100%;
-            border: none;
-            outline: none;
-            font-size: 1em;
-            background-color: transparent;
-            position: absolute;
-            top: 0; right: 0;
-          }
-
-          button{
-            width: 30px; height: 100%;
-            position: absolute;
-            top: 0; left: 0;
-          }
+        button{
+          width: 30px; height: 100%;
+          position: absolute;
+          top: 0; left: 0;
         }
 
         &:first-child{
