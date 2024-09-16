@@ -1,64 +1,64 @@
-<form #filterForm="ngForm">
-  <!-- Filtro per nome del prodotto -->
-  <div class="box">
-    <label for="name">Nome Prodotto</label>
-    <input type="text" id="name" name="productName"
-      [(ngModel)]="filters.nome"
-        placeholder="Cerca per nome">
+<!-- Filtro per nome del prodotto -->
+<div class="box">
+  <label for="name">Nome Prodotto</label>
+  <input type="text" id="name" name="productName"
+    [(ngModel)]="filters.nome"
+    (ngModelChange)="applyFilters()"
+      placeholder="Cerca per nome">
+</div>
+
+<hr>
+<!-- Filtro per categoria -->
+
+<div class="box">
+  <label for="category">Categoria</label>
+  <select name="category" id="category" [(ngModel)]="filters.categoria" (ngModelChange)="applyFilters()">
+    <option value="" selected>Tutte</option>
+    <option [value]="c" *ngFor="let c of categories">{{c}}</option>
+  </select>
+</div>
+
+<hr>
+<!-- Filtro per colore -->
+
+<label>Colori</label>
+<div class="box checkBox">
+  <div *ngFor="let color of colors">
+    <input type="checkbox" [value]="color" (change)="onFilterChange($event, 'colori_disponibili'); applyFilters()"/> {{ color }}
   </div>
+</div>
 
-  <hr>
-  <!-- Filtro per categoria -->
+<hr>
+<!-- Filtro per taglia -->
 
-  <div class="box">
-    <label for="category">Categoria</label>
-    <select name="category" id="category" [(ngModel)]="filters.categoria">
-      <option value="" selected>Tutte</option>
-      <option [value]="c" *ngFor="let c of categories">{{c}}</option>
-    </select>
+<label>Taglie</label>
+<div class="box checkBox">
+  <div *ngFor="let size of sizes">
+    <input type="checkbox" [value]="size" (change)="onFilterChange($event, 'taglie_disponibili'); applyFilters()"/> {{ size }}
   </div>
+</div>
 
-  <hr>
-  <!-- Filtro per colore -->
+<hr>
+<!-- Filtro per Best Seller  -->
 
-  <label>Colori</label>
-  <div class="box checkBox">
-    <div *ngFor="let color of colors">
-      <input type="checkbox" [value]="color" (change)="onFilterChange($event, 'colori_disponibili')"/> {{ color }}
-    </div>
-  </div>
-  
-  <hr>
-  <!-- Filtro per taglia -->
+<div class="box">
+  <label for="bSeller">Recensioni clienti</label>
+  <select name="bSeller" id="bSeller" [(ngModel)]="filters.best_seller" (ngModelChange)="applyFilters()">
+    <option value="" selected>Tutte</option>
+    <option [value]="bS" *ngFor="let bS of bestSeller">{{bS}}</option>
+  </select>
+</div>
 
-  <label>Taglie</label>
-  <div class="box checkBox">
-    <div *ngFor="let size of sizes">
-      <input type="checkbox" [value]="size" (change)="onFilterChange($event, 'taglie_disponibili')"/> {{ size }}
-    </div>
-  </div>
+<!-- Filtro per Nuovi arrivi  -->
+<div class="box">
+  <label>
+    <input type="checkbox" name="nuovoArrivi" [(ngModel)]="filters.nuovo_arrivi" (change)="onNewArrivalsChange($event); applyFilters()"/> Nuovi Arrivi
+  </label>
+</div>
 
-  <hr>
-  <!-- Filtro per Best Seller  -->
+<!-- Bottono per avviare la ricerca -->
+<!-- <button type="button" (click)="applyFilters()">Applica Filtro</button> -->
 
-  <div class="box">
-    <label for="bSeller">Recensioni clienti</label>
-    <select name="bSeller" id="bSeller" [(ngModel)]="filters.best_seller">
-      <option value="" selected>Tutte</option>
-      <option [value]="bS" *ngFor="let bS of bestSeller">{{bS}}</option>
-    </select>
-  </div>
-
-  <!-- Filtro per Nuovi arrivi  -->
-  <div class="box">
-    <label>
-      <input type="checkbox" name="nuovoArrivi" [(ngModel)]="filters.nuovo_arrivi" (change)="onNewArrivalsChange($event)"/> Nuovi Arrivi
-    </label>
-  </div>
-
-  <!-- Bottono per avviare la ricerca -->
-  <button type="button" (click)="applyFilters()">Applica Filtro</button>
-</form>
 
 <div class="container">
   <app-card-p *ngFor="let product of filteredProducts"

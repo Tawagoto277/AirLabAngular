@@ -16,6 +16,7 @@ import { CardPComponent } from './components/shop/card-p/card-p.component';
 import { StarRatingPipe } from './pipe/star-rating.pipe';
 import { ProductComponent } from './components/product/product.component';
 import { ColorPipePipe } from './pipe/color-pipe.pipe';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ColorPipePipe } from './pipe/color-pipe.pipe';
     StarRatingPipe,
     ProductComponent,
     ColorPipePipe,
+    CartComponent,
   ],
   imports: [
     BrowserModule,

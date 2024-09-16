@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ShoeDataServiceService } from '../../services/shoe-data-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { Filtro, Prodotto } from '../../models/shoeData';
+import { CartService } from '../../services/cart-service.service';
 
 @Component({
   selector: 'app-product',
@@ -10,7 +11,10 @@ import { Filtro, Prodotto } from '../../models/shoeData';
 })
 export class ProductComponent implements OnInit{
 
-  constructor(public sds : ShoeDataServiceService, private route: ActivatedRoute){ }
+  constructor(
+    public sds : ShoeDataServiceService, 
+    private route: ActivatedRoute,
+    public cs: CartService){ }
   
   product: Prodotto | null = null;
   paginaId: string | null = null;

@@ -37,3 +37,16 @@ export interface Filtro {
   nuovo_arrivi?: boolean
   best_seller?: number
 }
+
+export interface CartItem{
+  id: number;
+  nome: string;
+  categoria: string;
+  prezzo: number;
+  taglia: number;
+  colore: string;
+  descrizione: string;
+  immagine: string;
+  rating: number;
+  quantita: number;
+}
