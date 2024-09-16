@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="info">
+    <h3>
+      <a [routerLink]="['/shop/product', item.id]">
+        {{ item.nome }}
+      </a>
+    </h3>
+    <p>Prezzo: {{ item.prezzo | currency:'EUR':'symbol'}}</p>
+    <p>Taglia: {{item.taglia}}</p>
+    <p>Colore: {{item.colore}}</p>
+    <p>Quantità: {{item.quantita}}</p>
+  </div>
+  <img [src]="sds.getFullImageUrl(item.immagine)" [alt]="item.nome">
+  <button (click)="removeFromCart(item.id)"></button>
+</div>

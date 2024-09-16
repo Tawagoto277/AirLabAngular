@@ -35,9 +35,59 @@ section{
   }
   .divColor{
     grid-area: col;
+
+    ul{
+      display: flex;
+      justify-content: space-around;
+
+      li{
+        input{
+          display: none;
+
+          &:checked + label{
+            border: 2px solid black;
+            border-radius: 15px;
+          }
+        }
+
+        label{
+          padding: 5px;
+          border: 2px solid transparent;
+          border-radius: 15px;
+          text-align: center;
+          background-color: transparent;
+          cursor: pointer;
+          display: block;
+        }
+      }
+    }
   }
-  .divTglia{
+  .divTaglia{
     grid-area: tgl;
+
+    ul{
+      display: flex;
+      justify-content: space-around;
+
+      li{
+        input{
+          display: none;
+
+          &:checked + label{
+            border: 2px solid black;
+            border-radius: 15px;
+          }
+        }
+
+        label{
+          padding: 0 5px;
+          border: 2px solid transparent;
+          border-radius: 15px;
+          background-color: transparent;
+          cursor: pointer;
+        }
+      }
+    }
   }
   .btnCart{
     grid-area: btn;

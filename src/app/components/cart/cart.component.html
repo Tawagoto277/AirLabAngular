@@ -1,13 +1,13 @@
+<h1>Carrello</h1>
 <div *ngIf="cartItems.length > 0; else emptyCart">
-  <h2>Carrello</h2>
   <ul>
     <li *ngFor="let item of cartItems">
-      {{ item.nome }} - {{ item.prezzo }}€
-      <button (click)="removeFromCart(item.id)">Rimuovi</button>
+      <app-cart-item [item]="item" (remove)="removeFromCart($event)"></app-cart-item>
     </li>
   </ul>
+  <app-cart-summary [cartItems]="cartItems"></app-cart-summary>
 </div>
 
 <ng-template #emptyCart>
-  <p>Il carrello è vuoto.</p>
+  <h1>Il carrello è attualmente vuoto.</h1>
 </ng-template>

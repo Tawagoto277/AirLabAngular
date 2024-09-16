@@ -1,0 +1,39 @@
+.container{
+  justify-content: space-between;
+  position: relative;
+  display: flex;
+
+  .info{
+    margin: 5px 20px;
+    font-size: 1.2em;
+
+    h3{
+      a{
+        text-decoration: none;
+        color: black;
+      }
+    }
+
+    p{
+      line-height: 1.2em;
+    }
+  }
+
+  img{
+    width: 100px;
+    margin: 0 20px;
+    display: inline-block;
+  }
+
+  button{
+    width: 25px;  height: 25px;
+    border: none;
+    margin: 5px;
+    background-color: rgb(245, 94, 94);
+    clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}

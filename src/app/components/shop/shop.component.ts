@@ -59,7 +59,8 @@ export class ShopComponent implements OnInit{
       this.setUniqueValues<string>(this.products, 'colori_disponibili', this.colors);
       this.setUniqueValues<string>(this.products, 'taglie_disponibili', this.sizes);
       
-    });    
+      this.applyFilters();
+    }); 
   };
 
   applyFilters(){this.filteredProducts = this.products.filter(product => {

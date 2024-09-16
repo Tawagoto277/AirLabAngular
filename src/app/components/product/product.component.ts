@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ShoeDataServiceService } from '../../services/shoe-data-service.service';
 import { ActivatedRoute } from '@angular/router';
 import { Filtro, Prodotto } from '../../models/shoeData';
 import { CartService } from '../../services/cart-service.service';
+import { CartConfirmationComponent } from '../cart-confirmation/cart-confirmation.component';
+import { CardComponent } from '../homepage/card/card.component';
 
 @Component({
   selector: 'app-product',
@@ -10,6 +12,8 @@ import { CartService } from '../../services/cart-service.service';
   styleUrl: './product.component.scss'
 })
 export class ProductComponent implements OnInit{
+
+  @ViewChild(CartConfirmationComponent) cartConfirmation!: CartConfirmationComponent;
 
   constructor(
     public sds : ShoeDataServiceService, 
@@ -50,6 +54,9 @@ export class ProductComponent implements OnInit{
   addToCart(): void{
     if(this.selectedColor && this.selectedSize){
       this.cs.updateCartItem(this.product!, 1, this.selectedSize, this.selectedColor);
+
+      this.cartConfirmation.product = this.product!;
+      this.cartConfirmation.showConfirmatin();
     }
   }
 };

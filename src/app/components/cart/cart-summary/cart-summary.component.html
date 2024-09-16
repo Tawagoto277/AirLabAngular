@@ -1,0 +1,4 @@
+<div *ngIf="cartItems.length > 0">
+  <h3>Riepilogo del carrello</h3>
+  <p>Totale: {{ getTotal() | currency:'EUR':'symbol' }}</p>
+</div>

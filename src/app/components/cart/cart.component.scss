@@ -1,0 +1,22 @@
+h1{
+  margin-left: 5% ;
+  margin-bottom: 15px;
+}
+
+div, ng-template{
+  margin: 0 5%;
+  display: flex;
+  justify-content: space-between;
+
+  ul{
+    width: 45%;
+    li{
+      margin: 10px 0;
+      border: 1px solid red;
+    }
+  }
+
+  app-cart-summary{
+    width: 45%;
+  }
+}
