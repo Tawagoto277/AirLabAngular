@@ -1,9 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CartItem } from '../../../models/shoeData';
 import { ShoeDataServiceService } from '../../../services/shoe-data-service.service';
-import { CartService } from '../../../services/cart-service.service';
-import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-cart-item',
@@ -12,25 +9,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CartItemComponent {
 
-  constructor(
-    public sds : ShoeDataServiceService, 
-    public cs: CartService,
-    private http: HttpClient
-  ){ }
+  constructor(public sds : ShoeDataServiceService){ }
 
   @Input() item!: CartItem;
+  @Output() remove = new EventEmitter<string>();
 
-  removeFromCart(product: any, size: number, colore: string) {
-
-    this.http.get<CartItem[]>('http://localhost:3000/cartItems').subscribe(cartItem => {
-      const existItem: CartItem | undefined = cartItem.find(item => 
-        item.id === product.id && item.colore === colore && item.taglia === size);
-
-      if(existItem){
-        this.cs.removeFromCart(product, size, colore).subscribe(() => {
-          console.log("eliminato");
-        });
-      };
-    });
+  removeFromCart(itemId: string) {
+    this.remove.emit(itemId);
   }
 }

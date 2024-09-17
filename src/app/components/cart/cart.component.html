@@ -2,10 +2,9 @@
 <div *ngIf="cartItems.length > 0; else emptyCart">
   <ul>
     <li *ngFor="let item of cartItems">
-      <app-cart-item [item]="item"></app-cart-item>
+      <app-cart-item [item]="item" (remove)="removeFromCart($event)"></app-cart-item>
     </li>
   </ul>
-  <app-cart-summary [cartItems]="cartItems"></app-cart-summary>
 </div>
 
 <ng-template #emptyCart>

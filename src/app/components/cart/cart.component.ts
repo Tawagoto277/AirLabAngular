@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CartItem, Filtro, Prodotto } from '../../models/shoeData';
+import { CartItem } from '../../models/shoeData';
 import { CartService } from '../../services/cart-service.service';
 
 @Component({
@@ -29,4 +29,11 @@ export class CartComponent implements OnInit{
   //     this.loadCartItems();
   //   });
   // };
+
+  removeFromCart(productId: string): void{
+    this.cs.removeFromCart(productId).subscribe(()=> {
+      this.loadCartItems();
+    });
+  };
+
 }
