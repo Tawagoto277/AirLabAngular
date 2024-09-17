@@ -47,6 +47,6 @@ export interface CartItem{
   colore: string;
   descrizione: string;
   immagine: string;
-  rating: number;
+  best_seller: number;
   quantita: number;
 }

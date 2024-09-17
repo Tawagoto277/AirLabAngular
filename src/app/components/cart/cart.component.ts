@@ -29,10 +29,4 @@ export class CartComponent implements OnInit{
   //     this.loadCartItems();
   //   });
   // };
-  
-  removeFromCart(productId: number): void{
-    this.cs.removeFromCart(productId).subscribe(()=> {
-      this.loadCartItems();
-    });
-  };
 }

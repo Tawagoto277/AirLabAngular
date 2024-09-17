@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CartItem, Filtro, Prodotto } from '../models/shoeData';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +16,20 @@ export class CartService {
     return this.http.get<CartItem[]>(this.cartUrl);
   }
 
-  removeFromCart(productId: number): Observable<Filtro>{
-    return this.http.delete<Filtro>(`${this.cartUrl}/${productId}`);
-  }
+  removeFromCart(product: CartItem, size: number, color: string): Observable<CartItem[]>{
+    const params = new HttpParams()
+      .set('id', product.id)
+      .set('taglia', size)
+      .set('colore', color);
 
-  updateCartItem(prodict: Prodotto, quantity: number, size: number, color: string): void{
+    return this.http.delete<CartItem[]>(this.cartUrl, {params});
+  };
+
+  updateCartItem(product: Prodotto, quantity: number, size: number, color: string): void{
     
     this.http.get<CartItem[]>(this.cartUrl).subscribe(cartItems => {
-      const existItem : CartItem | undefined = cartItems.find(item => item.id === prodict.id);
+      const existItem : CartItem | undefined = cartItems.find(item => 
+        item.id === product.id && item.colore === color && item.taglia === size);
 
       if(existItem){
         existItem.quantita += quantity;
@@ -31,15 +37,15 @@ export class CartService {
       }else{
         
         const newItem : CartItem = {
-          id : prodict.id,
-          nome: prodict.nome,
-          categoria: prodict.categoria,
-          prezzo: prodict.prezzo,
+          id : product.id,
+          nome: product.nome,
+          categoria: product.categoria,
+          prezzo: product.prezzo,
           taglia: size,
           colore: color,
-          descrizione: prodict.descrizione,
-          immagine: prodict.immagine,
-          rating: prodict.best_seller,
+          descrizione: product.descrizione,
+          immagine: product.immagine,
+          best_seller: product.best_seller,
           quantita: quantity,
         };
 

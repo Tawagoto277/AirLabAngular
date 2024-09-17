@@ -11,5 +11,5 @@
     <p>Quantità: {{item.quantita}}</p>
   </div>
   <img [src]="sds.getFullImageUrl(item.immagine)" [alt]="item.nome">
-  <button (click)="removeFromCart(item.id)"></button>
+  <button (click)="removeFromCart(item, item.taglia, item.colore)"></button>
 </div>
