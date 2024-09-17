@@ -16,10 +16,10 @@ export class CartService {
     return this.http.get<CartItem[]>(this.cartUrl);
   }
 
-  removeFromCart(product: CartItem, size: number, color: string): Observable<CartItem[]>{
+  removeFromCart(product: CartItem, taglia: number, color: string): Observable<CartItem[]>{
     const params = new HttpParams()
       .set('id', product.id)
-      .set('taglia', size)
+      .set('taglia', taglia)
       .set('colore', color);
 
     return this.http.delete<CartItem[]>(this.cartUrl, {params});
