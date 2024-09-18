@@ -1,0 +1,73 @@
+<!-- Step 1: Credenziali utente -->
+<div *ngIf="currentStep === 1">
+  <h2>Inserisci le tue credenziali</h2>
+  <form [formGroup]="userForm" (ngSubmit)="nextStep()">
+    
+    <label for="nome">Nome</label>
+    <input id="nome" formControlName="nome" type="text" />
+    <div *ngIf="userForm.get('nome')?.invalid && userForm.get('nome')?.touched">
+      Il nome è obbligatorio
+    </div>
+
+    <label for="cognome">Cognome</label>
+    <input id="cognome" formControlName="cognome" type="text" />
+    <div *ngIf="userForm.get('cognome')?.invalid && userForm.get('cognome')?.touched">
+      Il cognome è obbligatorio
+    </div>
+
+    <label for="email">Email</label>
+    <input id="email" formControlName="email" type="email" />
+    <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched">
+      Inserisci un'email valida
+    </div>
+
+    <label for="indirizzo">Indirizzo</label>
+    <input id="indirizzo" formControlName="indirizzo" type="text" />
+    <div *ngIf="userForm.get('indirizzo')?.invalid && userForm.get('indirizzo')?.touched">
+      L'indirizzo è obbligatorio
+    </div>
+
+    <label for="citta">Città</label>
+    <input id="citta" formControlName="citta" type="text" />
+    <div *ngIf="userForm.get('citta')?.invalid && userForm.get('citta')?.touched">
+      La città è obbligatoria
+    </div>
+
+    <label for="cap">CAP</label>
+    <input id="cap" formControlName="cap" type="text" />
+    <div *ngIf="userForm.get('cap')?.invalid && userForm.get('cap')?.touched">
+      Inserisci un CAP valido (5 cifre)
+    </div>
+
+    <button type="submit" [disabled]="userForm.invalid">Prosegui</button>
+  </form>
+</div>
+
+<!-- Step 2: Dati della carta -->
+<div *ngIf="currentStep === 2">
+  <h2>Inserisci i dati della carta</h2>
+  <form [formGroup]="cardFrom" (ngSubmit)="nextStep()">
+    
+    <label for="numeroCarta">Numero di carta</label>
+    <input id="numeroCarta" formControlName="numeroCarta" type="text" />
+    <div *ngIf="cardFrom.get('numeroCarta')?.invalid && cardFrom.get('numeroCarta')?.touched">
+      Numero di carta non valido (16 cifre)
+    </div>
+
+    <label for="scadenza">Data di scadenza (MM/YY)</label>
+    <input id="scadenza" formControlName="scadenza" type="text" />
+    <div *ngIf="cardFrom.get('scadenza')?.invalid && cardFrom.get('scadenza')?.touched">
+      Inserisci una data di scadenza valida (MM/YY)
+    </div>
+
+    <label for="cvv">CVV</label>
+    <input id="cvv" formControlName="cvv" type="text" />
+    <div *ngIf="cardFrom.get('cvv')?.invalid && cardFrom.get('cvv')?.touched">
+      Inserisci un CVV valido (3 o 4 cifre)
+    </div>
+
+    <button type="submit" [disabled]="cardFrom.invalid">Conferma pagamento</button>
+  </form>
+
+  <button (click)="previousStep()">Torna indietro</button>
+</div>
