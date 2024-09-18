@@ -17,7 +17,8 @@ export class CartService {
   }
 
   removeFromCart(productId: string): Observable<Filtro>{
-    return this.http.delete<Filtro>(`${this.cartUrl}/${productId}`);
+    const sanitizedProductId = productId.replace(/\//g, '%2F');
+    return this.http.delete<Filtro>(`${this.cartUrl}/${sanitizedProductId}`);
   }
 
   updateCartItem(product: Prodotto, quantity: number, size: number, color: string): void{

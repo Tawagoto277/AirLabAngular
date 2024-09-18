@@ -5,6 +5,7 @@
       <app-cart-item [item]="item" (remove)="removeFromCart($event)"></app-cart-item>
     </li>
   </ul>
+  <app-cart-summary [cartItems]="cartItems"></app-cart-summary>
 </div>
 
 <ng-template #emptyCart>
