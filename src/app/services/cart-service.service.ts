@@ -1,7 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CartItem, Filtro, Prodotto } from '../models/shoeData';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,20 +16,16 @@ export class CartService {
     return this.http.get<CartItem[]>(this.cartUrl);
   }
 
-  removeFromCart(product: CartItem, size: number, color: string): Observable<CartItem[]>{
-    const params = new HttpParams()
-      .set('id', product.id)
-      .set('taglia', size)
-      .set('colore', color);
-
-    return this.http.delete<CartItem[]>(this.cartUrl, {params});
-  };
+  removeFromCart(productId: string): Observable<Filtro>{
+    const sanitizedProductId = productId.replace(/\//g, '%2F');
+    return this.http.delete<Filtro>(`${this.cartUrl}/${sanitizedProductId}`);
+  }
 
   updateCartItem(product: Prodotto, quantity: number, size: number, color: string): void{
     
     this.http.get<CartItem[]>(this.cartUrl).subscribe(cartItems => {
       const existItem : CartItem | undefined = cartItems.find(item => 
-        item.id === product.id && item.colore === color && item.taglia === size);
+        item.idProdotto === product.id && item.colore === color && item.taglia === size);
 
       if(existItem){
         existItem.quantita += quantity;
@@ -37,7 +33,8 @@ export class CartService {
       }else{
         
         const newItem : CartItem = {
-          id : product.id,
+          id : `${product.id}-${size}-${color}`,
+          idProdotto : product.id,
           nome: product.nome,
           categoria: product.categoria,
           prezzo: product.prezzo,

@@ -39,7 +39,8 @@ export interface Filtro {
 }
 
 export interface CartItem{
-  id: number;
+  id: string;
+  idProdotto : number;
   nome: string;
   categoria: string;
   prezzo: number;

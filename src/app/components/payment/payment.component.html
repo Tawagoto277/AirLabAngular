@@ -1,0 +1,89 @@
+<div class="payment-container">
+  <h2 *ngIf="currentStep <= 2">Paga in modo sicuro</h2>
+  
+  <!-- Step 1: Credenziali utente -->
+  <form [formGroup]="userForm" *ngIf="currentStep === 1" (ngSubmit)="nextStep()">
+    <label for="nome">Nome</label>
+    <input id="nome" formControlName="nome" type="text" placeholder="Inserisci il tuo nome" />
+    <div *ngIf="userForm.get('nome')?.invalid && userForm.get('nome')?.touched" class="error-message">
+      Il nome è obbligatorio
+    </div>
+
+    <label for="cognome">Cognome</label>
+    <input id="cognome" formControlName="cognome" type="text" placeholder="Inserisci il tuo cognome" />
+    <div *ngIf="userForm.get('cognome')?.invalid && userForm.get('cognome')?.touched" class="error-message">
+      Il cognome è obbligatorio
+    </div>
+
+    <label for="email">Email</label>
+    <input id="email" formControlName="email" type="email" placeholder="Inserisci la tua email" />
+    <div *ngIf="userForm.get('email')?.invalid && userForm.get('email')?.touched" class="error-message">
+      Inserisci un'email valida
+    </div>
+
+    <label for="indirizzo">Indirizzo</label>
+    <input id="indirizzo" formControlName="indirizzo" type="text" placeholder="Inserisci il tuo indirizzo" />
+    <div *ngIf="userForm.get('indirizzo')?.invalid && userForm.get('indirizzo')?.touched" class="error-message">
+      L'indirizzo è obbligatorio
+    </div>
+
+    <label for="citta">Città</label>
+    <input id="citta" formControlName="citta" type="text" placeholder="Inserisci la tua città" />
+    <div *ngIf="userForm.get('citta')?.invalid && userForm.get('citta')?.touched" class="error-message">
+      La città è obbligatoria
+    </div>
+
+    <label for="cap">CAP</label>
+    <input id="cap" formControlName="cap" type="text" placeholder="Inserisci il CAP" />
+    <div *ngIf="userForm.get('cap')?.invalid && userForm.get('cap')?.touched" class="error-message">
+      Inserisci un CAP valido (5 cifre)
+    </div>
+
+    <button type="submit" [disabled]="userForm.invalid">Prosegui</button>
+  </form>
+
+  <!-- Step 2: Dati della carta -->
+  <form [formGroup]="cardFrom" *ngIf="currentStep === 2" (ngSubmit)="nextStep()">
+    <label for="numeroCarta">Numero di carta</label>
+    <input id="numeroCarta" formControlName="numeroCarta" type="text" placeholder="1234 5678 9012 3456" />
+    <div *ngIf="cardFrom.get('numeroCarta')?.invalid && cardFrom.get('numeroCarta')?.touched" class="error-message">
+      Numero di carta non valido (16 cifre)
+    </div>
+
+    <label for="scadenza">Data di scadenza (MM/YY)</label>
+    <input id="scadenza" formControlName="scadenza" type="text" placeholder="MM/YY" />
+    <div *ngIf="cardFrom.get('scadenza')?.invalid && cardFrom.get('scadenza')?.touched" class="error-message">
+      Inserisci una data di scadenza valida (MM/YY)
+    </div>
+
+    <label for="cvv">CVV</label>
+    <input id="cvv" formControlName="cvv" type="text" placeholder="123" />
+    <div *ngIf="cardFrom.get('cvv')?.invalid && cardFrom.get('cvv')?.touched" class="error-message">
+      Inserisci un CVV valido (3 o 4 cifre)
+    </div>
+
+    <button type="submit" [disabled]="cardFrom.invalid">Conferma pagamento</button>
+
+    <button type="button" class="back-button" (click)="previousStep()">Torna indietro</button>
+  </form>
+
+  <div *ngIf="currentStep === 3">
+    <div *ngIf="cartItems.length > 0">
+      <h2>Grazie per il tuo Ordine</h2>
+      <div>
+        <ul>
+          <li *ngFor="let item of cartItems">
+            {{item.nome}} - Taglia : {{item.taglia}} - Colore {{item.colore}} X {{item.quantita}}
+          </li>
+        </ul>
+        <hr>
+        <div class="gestione">
+          <p>Spese di spedizione</p><p>{{ 0 | currency:'EUR':'symbol' }}</p>
+          <p>Sconti </p><p>{{ 0 | currency:'EUR':'symbol' }}</p>
+        </div>
+        <hr>
+      </div>
+      <h3>Totale: {{ getTotal() | currency:'EUR':'symbol' }}</h3>
+    </div>
+  </div>
+</div>

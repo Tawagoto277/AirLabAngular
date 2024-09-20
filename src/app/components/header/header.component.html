@@ -1,166 +1,54 @@
 <header>
-  <section>
+  <section id="areaPersonale">
     <div id="sponsor">
       <a href="#">
-        <img src="style/img/logo/icons8-air-jordan-50.png" alt="">
+        <img src="/assets/images/icons8-air-jordan-50.png" alt="JordanLogo">
       </a>
       <a href="#">
-        <img src="style/img/logo/converseLogo.png" alt="">
+        <img src="/assets/images/converseLogo.png" alt="ConverseLogo">
       </a>
     </div>
     <div id="aiuti">
       <ul>
-        <li><a href="#">Trova un negozio</a></li>
-        <li><a href="#">Aiuto</a></li>
-        <li><a href="#">Unisciti a noi</a></li>
-        <li><a routerLink="/cart">Accedi</a></li>
+        <a href="#"><li>Trova un negozio</li></a>
+        <a href="#"><li>Aiuto</li></a>
+        <a href="#"><li>Unisciti a noi</li></a>
+        <a routerLink="/cart"><li>Accedi</li></a>
       </ul>
     </div>
   </section>
-  <section>
+  <section id="navigazione">
     <div id="logo">
       <a href="index.html">
-        <img src="style/img/logo/logo.png" alt="">
+        <img src="/assets/images/logo.png" alt="">
       </a>
     </div>
     <nav>
       <ul>
-        <li><a routerLink="/shop">Novita' e in evidenza</a></li>
-        <li><a routerLink="/shop">Uomo</a></li>
-        <li><a routerLink="/shop">Donna</a></li>
-        <li><a routerLink="/shop">Kids</a></li>
-        <li><a routerLink="/shop">Outlet</a></li>
+        <a routerLink="/shop"><li>Novita' e in evidenza</li></a>
+        <a routerLink="/shop"><li>Uomo</li></a>
+        <a routerLink="/shop"><li>Donna</li></a>
+        <a routerLink="/shop"><li>Kids</li></a>
+        <a routerLink="/shop"><li>Outlet</li></a>
       </ul>
     </nav>
-    <div id="aquisti">
-      <ul>
-        <li>
-          <input type="text" placeholder="cerca" >
-          <button><img src="style/img/logo/cssSprite/search.png" alt=""></button>
-        </li>
-      </ul>
+    <div class="btn">
+      <div class="search-bar">
+        <button class="search-btn" (click)="onSearch(searchTerm.value)">
+          <mat-icon>search</mat-icon>
+        </button>
+        <input type="text" placeholder="Cerca" class="search-input" #searchTerm/>
+      </div>
+      <div class="shopping_cart">
+        <button class="shopping_cart-btn" routerLink="/cart">
+          <mat-icon>shopping_cart</mat-icon>
+        </button>
+      </div>
+      <div class="profilo">
+        <button class="profilo-btn" routerLink="#">
+          <mat-icon>person</mat-icon>
+        </button>
+      </div>
     </div>
   </section>
-  <section id="navNascosta">
-    <!-- <div id="navNovita">
-      <ul>
-        <li><a href="#scarpe">In evidenza</a></li>
-        <li><a href="#member">Scopri le icone</a></li>
-        <li><a href="#sport">Scopri lo sport</a></li>
-        <li><a href="#">Di tendenza</a></li>
-      </ul>
-      <ul>
-        <li><a href="#">Tutti i tuoi arrivi</a></li>
-        <li><a href="#">Best seller</a></li>
-        <li><a href="#">Member Shop</a></li>
-        <li><a href="#">Calendario dei lanci SKRS</a></li>
-        <li><a href="#">Divise delle nazionali 2024</a></li>
-        <li><a href="#">-25% sui look a prezzo pieno</a></li>
-      </ul>
-      <ul>
-        <li><a href="#">Air Forse 1</a></li>
-        <li><a href="#">Air Jordan 1</a></li>
-        <li><a href="#">Air Max</a></li>
-        <li><a href="#">Dunk</a></li>
-        <li><a href="#">Blazer</a></li>
-        <li><a href="#">Pegasus</a></li>
-        <li><a href="#">Mercurial</a></li>
-      </ul>
-      <ul>
-        <li><a href="#">Calcio</a></li>
-        <li><a href="#">Running</a></li>
-        <li><a href="#">Basket</a></li>
-        <li><a href="#">Fitness</a></li>
-        <li><a href="#">Golf</a></li>
-        <li><a href="#">Tennis</a></li>
-        <li><a href="#">Yoga</a></li>
-        <li><a href="#">Danza</a></li>
-        <li><a href="#">Skateboard</a></li>
-      </ul>
-      <ul>
-        <li><a href="#">Air Max Home</a></li>
-        <li><a href="#">Sneakers Y2K</a></li>
-        <li><a href="#">Nike Style By</a></li>
-        <li><a href="#">Collezione Jordan Retro</a></li>
-        <li><a href="#">Teeneger</a></li>
-        <li><a href="#">EasyOn</a></li>
-        <li><a href="#">Sostenibilita'</a></li>
-      </ul>
-    </div>
-    <div id="navUomo">
-      <ul>
-        <li><a href="#scarpe">In evidenza</a></li>
-        <li><a href="#member">Scopri le icone</a></li>
-        <li><a href="#sport">Scopri lo sport</a></li>
-        <li><a href="#">Di tendenza</a></li>
-      </ul>
-      <ul>
-        <li><a href="#">Tutti i tuoi arrivi</a></li>
-        <li><a href="#">Best seller</a></li>
-        <li><a href="#">Member Shop</a></li>
-        <li><a href="#">Calendario dei lanci SKRS</a></li>
-        <li><a href="#">Divise delle nazionali 2024</a></li>
-        <li><a href="#">-25% sui look a prezzo pieno</a></li>
-      </ul>
-      <ul>
-        <li><a href="#">Air Forse 1</a></li>
-        <li><a href="#">Air Jordan 1</a></li>
-        <li><a href="#">Air Max</a></li>
-        <li><a href="#">Dunk</a></li>
-        <li><a href="#">Blazer</a></li>
-        <li><a href="#">Pegasus</a></li>
-        <li><a href="#">Mercurial</a></li>
-      </ul>
-      <ul>
-        <li><a href="#">Calcio</a></li>
-        <li><a href="#">Running</a></li>
-        <li><a href="#">Basket</a></li>
-        <li><a href="#">Fitness</a></li>
-        <li><a href="#">Golf</a></li>
-        <li><a href="#">Tennis</a></li>
-        <li><a href="#">Yoga</a></li>
-        <li><a href="#">Danza</a></li>
-        <li><a href="#">Skateboard</a></li>
-      </ul>
-      <ul>
-        <li><a href="#">Air Max Home</a></li>
-        <li><a href="#">Sneakers Y2K</a></li>
-        <li><a href="#">Nike Style By</a></li>
-        <li><a href="#">Collezione Jordan Retro</a></li>
-        <li><a href="#">Teeneger</a></li>
-        <li><a href="#">EasyOn</a></li>
-        <li><a href="#">Sostenibilita'</a></li>
-      </ul>
-    </div> -->
-  </section>
-  <!-- <section id="sliderSconti">
-    <div class="davanti">
-      <p>25% DI SCONTO PER I MEMBER</p>
-      <a href="#">Usa lo sconto airLab per ottenere tutto gratis.</a>
-    </div>
-    <div class="">
-      <p>SE AQUISTI UNA SCARPA NIKE LAB AVRAI ANCHE UN GELATO IN REGALO</p>
-      <a href="#">Scegli i gusti del tuo gelato.</a>
-    </div>
-    <div class="">
-      <p>SE AQUISTI UNA SCARPA NIKE LAB AVRAI ANCHE UN GELATO IN REGALO</p>
-      <a href="#">Scegli i gusti del tuo gelato.</a>
-    </div>
-    <div class="">
-      <p>SE AQUISTI UNA SCARPA NIKE LAB AVRAI ANCHE UN GELATO IN REGALO</p>
-      <a href="#">Scegli i gusti del tuo gelato.</a>
-    </div>
-    <div class="">
-      <p>SE AQUISTI UNA SCARPA NIKE LAB AVRAI ANCHE UN GELATO IN REGALO</p>
-      <a href="#">Scegli i gusti del tuo gelato.</a>
-    </div>
-    <div class="">
-      <p>SE AQUISTI UNA SCARPA NIKE LAB AVRAI ANCHE UN GELATO IN REGALO</p>
-      <a href="#">Scegli i gusti del tuo gelato.</a>
-    </div>
-    <div class="visibile">
-      <p>42,123% DI SCONTO SE AQUISTI</p>
-      <a href="#">Aquista qui i tuoi prodotti.</a>
-    </div>
-  </section> -->
 </header>

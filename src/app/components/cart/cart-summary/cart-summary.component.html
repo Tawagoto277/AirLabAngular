@@ -1,4 +1,20 @@
 <div *ngIf="cartItems.length > 0">
-  <h3>Riepilogo del carrello</h3>
-  <p>Totale: {{ getTotal() | currency:'EUR':'symbol' }}</p>
+  <h2>Riepilogo del carrello</h2>
+  <div>
+    <ul>
+      <li *ngFor="let item of cartItems">
+        {{item.nome}} - Taglia : {{item.taglia}} - Colore {{item.colore}} X {{item.quantita}}
+      </li>
+    </ul>
+    <hr>
+    <div class="gestione">
+      <p>Spese di spedizione</p><p>{{ 0 | currency:'EUR':'symbol' }}</p>
+      <p>Sconti </p><p>{{ 0 | currency:'EUR':'symbol' }}</p>
+    </div>
+    <hr>
+  </div>
+  <h3>Totale: {{ getTotal() | currency:'EUR':'symbol' }}</h3>
+  <button [routerLink]="['/payment']">
+    Procedi al pagamento
+  </button>
 </div>

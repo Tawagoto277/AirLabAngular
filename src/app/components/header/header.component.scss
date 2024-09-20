@@ -1,157 +1,139 @@
-section:nth-child(1){
-  margin: 0 25px;
-  display: flex;
+a{
+  text-decoration: none;
+  color: black;
+}
+
+#areaPersonale{
+  margin: 5px 25px;
+  align-items: center;
   justify-content: space-between;
-  align-items:center;
+  display: flex;
+
+  img{
+    width: 50px; height: 50px;
+    display: inline-block;
+  }
 
   #sponsor{
-    display: flex;
-    justify-content: center;
-
     img{
-      margin: 5px;
-      width: 35px; height: 35px;
+      margin: 0 10px;
     }
   }
 
-  #aiuti ul{
-    display: flex;
-    justify-content: center;
-
-    li{
-      padding: 5px;
-      margin: 0 5px;
-
-      a{
-        text-decoration: none;
-        color: black;
+  #aiuti{
+    ul{
+      display: flex;
+      li{
+        padding: 5px;
+        margin: 0 20px;
       }
     }
   }
 }
 
-section:nth-child(2){
+#navigazione{
+  margin-bottom: 25px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 
-  #logo{
+  div#logo{
     width: 150px; height: 75px;
-    margin: 0 20px;
+    margin: 5px 15px;
   }
 
-  #aquisti{
-    width: 25%;
-    align-content: center;
-
-    ul{
-      height: 75%;
-      display: grid;
-      grid-template-columns: 3fr 1fr 1fr;
-      
-      li{
-        margin: 10px 0;
-        text-align: center;
-        align-content: center;
-
-        input{
-          width: calc(100% - 50px); height: 100%;
-          border: none;
-          outline: none;
-          font-size: 1em;
-          background-color: transparent;
-          position: absolute;
-          top: 0; right: 0;
-        }
-
-        button{
-          width: 30px; height: 100%;
-          position: absolute;
-          top: 0; left: 0;
-        }
-
-        &:first-child{
-          width: 100%;
-          border-radius: 15px;
-          position: relative;
-          
-          &:hover{
-            background-color: rgb(200, 200, 200);
-          }
-        }
-
-        button{
-          width: 40px;
-          padding: 5px;
-          border: none;
-          border-radius: 20px;
-          background-color: transparent;
-          cursor: pointer;
-
-          &:hover{
-            background-color: rgb(200, 200, 200);
-          }
-        }
-      }
-    }
-  }
-    
   nav{
-    width: 40%;
+    width: 35%;
     
     ul{
-      height: 100%;
-      display: flex;
+      line-height: 3em;
       justify-content: space-between;
-      
+      display: flex;
+
       li{
-        height: 80%;
-        margin: 10px 0;
-        align-content: center;
+        padding: 0 10px;
+        border-bottom: 4px solid white;
         
-        a{
-          padding: 15px 0;
-          border-bottom: 3px solid transparent;
-          text-decoration: none;
-          color: black;
-          
-          &:hover{
-            border-bottom-color: black;
-          }
+        &:hover{
+          border-bottom: 4px solid black;
         }
       }
     }
   }
-}
 
-section:nth-child(4){
-  height: 75px;
-  overflow: auto;
-  overflow-y: hidden;
-  overflow-x: hidden;
-  position: relative;
+  div:last-of-type{
+    //width: 15%;
+    display: flex;
+    justify-content: space-between;
 
-  div{
-    width: 100%;
-    padding: 10px;
-    line-height: 1.5em;
-    text-align: center;
-    transition: 1.5s;
-    position: absolute;
-    top: 0; left: -100%;
-    background-color: rgb(235, 244, 248);
-
-
-    a{
-      color: black;
+    div{
+      margin: 0 5px;
     }
 
-    &.visibile{
-      left: 0;
-      z-index: 5;
+    .search-bar {
+      padding: 5px 15px;
+      border-radius: 50px;
+      margin: 0 auto;
+      align-items: center;
+      background-color: #f5f5f5;
+      display: flex;
+    
+      .search-input {
+        width: 200px;
+        padding: 10px;
+        border: none;
+        border-radius: 50px;
+        outline: none;
+        font-size: 16px;
+        flex-grow: 1;
+        background: transparent;
+        color: #333;
+        transition: box-shadow 0.3s ease;
+    
+        &::placeholder {
+          color: #aaa;
+        }
+    
+        &:focus {
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+      }
+    
+      .search-btn {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+    
+        img {
+          width: 20px;
+          height: 20px;
+        }
+    
+        &:hover {
+          opacity: 0.7;
+        }
+      }
+
+      &:hover{
+        outline: 2px solid skyblue;
+      }
     }
-    &.davanti{
-      left: 100%;
-      z-index: -5;
+
+    .profilo, .shopping_cart{
+      width: 50px; height: 50px;
+      border-radius: 25px;
+      align-items: center;
+      button.shopping_cart-btn, button.profilo-btn{
+        width: 50px; height: 50px;
+        border: none;
+        cursor: pointer;
+        background-color: transparent;
+      }
+
+      &:hover{
+        outline: 2px solid skyblue;
+      }
     }
   }
 }
