@@ -34,10 +34,10 @@
     </nav>
     <div class="btn">
       <div class="search-bar">
-        <button class="search-btn">
+        <button class="search-btn" (click)="onSearch(searchTerm.value)">
           <mat-icon>search</mat-icon>
         </button>
-        <input type="text" placeholder="Cerca" class="search-input" />
+        <input type="text" placeholder="Cerca" class="search-input" #searchTerm/>
       </div>
       <div class="shopping_cart">
         <button class="shopping_cart-btn" routerLink="/cart">

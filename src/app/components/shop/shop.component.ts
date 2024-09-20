@@ -43,10 +43,15 @@ export class ShopComponent implements OnInit{
       }
     })
     
-    this.route.params.subscribe(params => {
+    this.route.queryParams.subscribe(params => {
       if(params['category']){
         this.filters.categoria = params['category'];
       };
+
+      if(params['search']){
+        this.filters.nome = params['search'];
+      }
+      this.applyFilters();
     });
     
     this.sds.getFilteredShoes().subscribe(p => {
@@ -83,58 +88,11 @@ export class ShopComponent implements OnInit{
     const matchsBSeller = this.filters.best_seller ? product.best_seller == this.filters.best_seller: true
 
     const matchsNuovoArrivi = this.filters.nuovo_arrivi !== undefined ? product.nuovo_arrivi === this.filters.nuovo_arrivi : true; 
-
-    // console.log(matchsNuovoArrivi);
-    // console.log(product.nuovo_arrivi);
     
     console.log(product.nome, product.colori_disponibili);
     
     return matchsName && matchsCategory && matchsColor && matchSize && matchsBSeller && matchsNuovoArrivi;
   });};
-
-  // setCategory(){
-  //   const categorySet = new Set<string>();
-    
-  //   this.products.forEach(product => {
-  //     categorySet.add(product.categoria);      
-  //   });
-
-  //   this.categories = Array.from(categorySet).sort();
-  // };
-  
-  // setBestSeller(){
-  //   const bSellerSet = new Set<number>();
-    
-  //   this.products.forEach(product => {
-  //     bSellerSet.add(product.best_seller);      
-  //   });
-
-  //   this.bestSeller = Array.from(bSellerSet).sort();
-  // };
-
-  // setColor(){
-  //   const colorSet = new Set<string>();
-
-  //   this.products.forEach(product => {
-  //     product.colori_disponibili.forEach( pColor => {        
-  //       colorSet.add(pColor);
-  //     });
-  //   });
-    
-  //   this.colors = Array.from(colorSet).sort();
-  // };
-
-  // setSize(){
-  //   const sizeSet = new Set<string>();
-
-  //   this.products.forEach(product => {
-  //     product.taglie_disponibili.forEach( tSize => {
-  //       sizeSet.add(tSize);
-  //     });
-  //   });
-
-  //   this.sizes = Array.from(sizeSet).sort();
-  // };
 
   setUniqueValues<T>(products: Prodotto[], property: keyof Prodotto, targetArray: T[]): void {
     const uniqueSet = new Set<T>();
@@ -153,40 +111,6 @@ export class ShopComponent implements OnInit{
     targetArray.length = 0; // Svuota l'array originale
     targetArray.push(...Array.from(uniqueSet).sort());
   };
-
-  // onColorChange(event : any){
-  //   const color = event.target.value;
-  //   const isChecked = event.target.checked;
-
-  //   if(isChecked){
-  //     if (!this.filters.colori_disponibili) {
-  //       this.filters.colori_disponibili = [];
-  //     };
-  //     this.filters.colori_disponibili?.push(color);
-  //   }else{
-  //     const index = this.filters.colori_disponibili?.indexOf(color);
-  //     if(index! > -1){
-  //       this.filters.colori_disponibili?.splice(index!, 1);
-  //     };
-  //   };
-  // };
-  
-  // onSizesChange(event : any){
-  //   const size = event.target.value;
-  //   const isChecked = event.target.checked;
-
-  //   if(isChecked){
-  //     if (!this.filters.taglie_disponibili) {
-  //       this.filters.taglie_disponibili = [];
-  //     };
-  //     this.filters.taglie_disponibili?.push(size);
-  //   }else{
-  //     const index = this.filters.taglie_disponibili?.indexOf(size);
-  //     if(index! > -1){
-  //       this.filters.taglie_disponibili?.splice(index!, 1);
-  //     };
-  //   };
-  // };
 
   onFilterChange(event: any, filterType: 'colori_disponibili' | 'taglie_disponibili') {
     const value = event.target.value;
