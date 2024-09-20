@@ -14,7 +14,7 @@
     <hr>
   </div>
   <h3>Totale: {{ getTotal() | currency:'EUR':'symbol' }}</h3>
-  <button>
+  <button [routerLink]="['/payment']">
     Procedi al pagamento
   </button>
 </div>
