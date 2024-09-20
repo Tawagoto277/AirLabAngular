@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { provideHttpClient } from "@angular/common/http"
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +22,7 @@ import { CartConfirmationComponent } from './components/cart-confirmation/cart-c
 import { CartItemComponent } from './components/cart/cart-item/cart-item.component';
 import { CartSummaryComponent } from './components/cart/cart-summary/cart-summary.component';
 import { PaymentComponent } from './components/payment/payment.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 @NgModule({
   declarations: [
@@ -46,9 +48,11 @@ import { PaymentComponent } from './components/payment/payment.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
+    MatIconModule,
   ],
   providers: [
-    provideHttpClient()
+    provideHttpClient(),
+    provideAnimationsAsync()
   ],
   bootstrap: [AppComponent]
 })
