@@ -67,7 +67,7 @@
     <button type="button" class="back-button" (click)="previousStep()">Torna indietro</button>
   </form>
 
-  <div *ngIf="currentStep === 3">
+  <div class="riepilogo" *ngIf="currentStep === 3">
     <div *ngIf="cartItems.length > 0">
       <h2>Grazie per il tuo Ordine</h2>
       <div>

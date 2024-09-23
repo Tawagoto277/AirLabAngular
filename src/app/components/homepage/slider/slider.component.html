@@ -1,3 +1,7 @@
+<!-- Crea un componente slider in base all'array che gli si passa
+  con un titolo e 2 bottoni per muovere gli oggetti
+  per poi inviare e creare la carta per singolo elemento dell'array -->
+
 <div class="slider-container" *ngIf="slider">
   <div class="slider-head">
     <h2>
@@ -8,8 +12,10 @@
   </div>
   <div class="slider-body" #sliderBody>
     <div class="slider-wrapper" #sliderWrapper>
-      <app-card *ngFor="let i of slider"
-        [image]="i"></app-card>
+      <app-card 
+        *ngFor="let i of slider"
+        [image]="i">
+      </app-card>
     </div>
   </div>
 </div>

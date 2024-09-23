@@ -39,8 +39,8 @@
 </div>
 
 <hr>
-<!-- Filtro per Best Seller  -->
 
+<!-- Filtro per Best Seller o Rating-->
 <div class="box">
   <label for="bSeller">Recensioni clienti</label>
   <select name="bSeller" id="bSeller" [(ngModel)]="filters.best_seller" (ngModelChange)="applyFilters()">
@@ -56,10 +56,7 @@
   </label>
 </div>
 
-<!-- Bottono per avviare la ricerca -->
-<!-- <button type="button" (click)="applyFilters()">Applica Filtro</button> -->
-
-
+<!-- Elenco prodotti Filtrati -->
 <div class="container">
   <app-card-p *ngFor="let product of filteredProducts"
     [product]="product"></app-card-p>

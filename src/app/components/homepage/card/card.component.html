@@ -1,3 +1,5 @@
+<!-- identifica tue tipologie di cards, quelle prodotto(image) e categoria
+   -->
 <div *ngIf="image">
   <ng-container *ngIf="image.categoria; else noCategory">
     <a [routerLink]="['shop/product', image.id]">

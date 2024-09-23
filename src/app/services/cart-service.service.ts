@@ -12,15 +12,18 @@ export class CartService {
 
   constructor(private http : HttpClient) { }
 
+  //mostra il carrello salvato ne db
   getCartItems(): Observable<CartItem[]>{
     return this.http.get<CartItem[]>(this.cartUrl);
   }
 
+  //rimuove il prodotto
   removeFromCart(productId: string): Observable<Filtro>{
     const sanitizedProductId = productId.replace(/\//g, '%2F');
     return this.http.delete<Filtro>(`${this.cartUrl}/${sanitizedProductId}`);
   }
 
+  //dovrebbe variare la quantita dei prodotti
   updateCartItem(product: Prodotto, quantity: number, size: number, color: string): void{
     
     this.http.get<CartItem[]>(this.cartUrl).subscribe(cartItems => {

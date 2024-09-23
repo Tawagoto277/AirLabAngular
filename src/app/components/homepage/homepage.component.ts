@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoeDataServiceService } from '../../services/shoe-data-service.service';
 import { forkJoin } from 'rxjs';
-import { Banner, Prodotto } from '../../models/shoeData';
 
 @Component({
   selector: 'app-homepage',
@@ -11,15 +10,20 @@ import { Banner, Prodotto } from '../../models/shoeData';
 export class HomepageComponent implements OnInit {
   constructor(public sds : ShoeDataServiceService ){  }
 
-  // sliders:(Prodotto[] | Banner[])[] = [];
+  //dovrei specificare il prodotto ma arrivano 2 diversi tipi di oggetti
   sliders: any[] = [];
 
+  //Qui scrivo i titoli per ogni slider
   titoli:string[] = [
     'Nuovi Arrivi',
     'Best Seller - Le scelte dei nostri Clienti',
     'Sport',
-    'Membership'];
+    'Membership'
+  ];
 
+  //alla creazione dell'componente fa 4 chiamate diverse che racchiudo tutto in 
+  //requests = richieste, con forJoin(requests) aspetto che tutte le chiamate siano
+  //effetuate per poi passarle a al array slider
   ngOnInit(): void {    
     const requests = [
       this.sds.getFilteredShoes({nuovo_arrivi : true}),
@@ -33,7 +37,6 @@ export class HomepageComponent implements OnInit {
         this.sliders.push(response);
       })
     });
-
-    console.log(this.sliders);
+    //console.log(this.sliders);
   }
 }

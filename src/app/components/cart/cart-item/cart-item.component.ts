@@ -13,8 +13,13 @@ export class CartItemComponent {
 
   @Input() item!: CartItem;
   @Output() remove = new EventEmitter<string>();
+  @Output() add = new EventEmitter<CartItem>();
 
   removeFromCart(itemId: string) {
     this.remove.emit(itemId);
+  }
+
+  addToCart(item: CartItem) {
+    this.add.emit(item);
   }
 }

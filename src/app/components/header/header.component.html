@@ -13,7 +13,7 @@
         <a href="#"><li>Trova un negozio</li></a>
         <a href="#"><li>Aiuto</li></a>
         <a href="#"><li>Unisciti a noi</li></a>
-        <a routerLink="/cart"><li>Accedi</li></a>
+        <a href="#"><li>Accedi</li></a>
       </ul>
     </div>
   </section>
@@ -34,7 +34,7 @@
     </nav>
     <div class="btn">
       <div class="search-bar">
-        <button class="search-btn" (click)="onSearch(searchTerm.value)">
+        <button class="search-btn" (click)="onSearch(searchTerm.value); searchTerm.value = '';">
           <mat-icon>search</mat-icon>
         </button>
         <input type="text" placeholder="Cerca" class="search-input" #searchTerm/>

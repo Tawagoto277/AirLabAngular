@@ -10,6 +10,7 @@ export class HeaderComponent {
   
   constructor(private router: Router) {}
 
+  //Barra di ricerca, porta allo shop con il nome gia inserito e svuota la barra
   onSearch(term: string) {
     if (term) {
       this.router.navigate(['/shop'], { queryParams: { search: term } });

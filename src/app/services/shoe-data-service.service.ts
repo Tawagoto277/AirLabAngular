@@ -8,17 +8,22 @@ import { Banner, Filtro, Prodotto } from '../models/shoeData';
 })
 export class ShoeDataServiceService {
 
+  //per le chiamate http
   constructor(private http: HttpClient) { }
 
+  //prende l'immagine dal db tramite il link che gli viene passato nella cartella public
   getFullImageUrl(imagePath: string): string {
     const baseUrl = 'http://localhost:3000';
     return `${baseUrl}${imagePath}`;
   }
 
+  //per i banner delle categorie
   getBanner(tipo: string): Observable<Banner[]>{
     return this.http.get<Banner[]>('http://localhost:3000/' + tipo);
   };
 
+  //filtra gli oggetti, carca che cosa c'e' nel filtro crea un parametro
+  //di selezione per il db in modo che sia piui efficace la ricerca
   getFilteredShoes(filters?: Filtro): Observable<Prodotto[] | Prodotto> {
 
     let params = new HttpParams();
@@ -61,6 +66,7 @@ export class ShoeDataServiceService {
       if (Array.isArray(response)) {
         return response;
       }
+      //restituisce un unico array con un oggetto se c'e' un singolo elemento come risposta
       return [response];
     }));
 

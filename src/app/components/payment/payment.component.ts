@@ -19,6 +19,7 @@ export class PaymentComponent implements OnInit{
 
   constructor(private fb: FormBuilder, public cs: CartService){ 
     
+    //per il form 
     this.userForm = this.fb.group({
       nome: ['', [Validators.required]],
       cognome: ['', [Validators.required]],
@@ -29,8 +30,8 @@ export class PaymentComponent implements OnInit{
     })
 
     this.cardFrom = this.fb.group({
-      numeroCarta: ["", [Validators.required, Validators.pattern('^[0-9]{16}$')]],
-      scadenza: ["", [Validators.required, Validators.pattern('^(0[1-9]|1[0-2])/[0-9]{2}$')]],
+      numeroCarta: ["", [Validators.required, Validators.pattern('^(?:4[0-9]{12}(?:[0-9]{3})?|5[1-5][0-9]{14}|6(?:011|5[0-9][0-9])[0-9]{12}|3[47][0-9]{13}|3(?:0[0-5]|[68][0-9])[0-9]{11}|(?:2131|1800|35\d{3})\d{11})$')]],
+      scadenza: ["", [Validators.required, Validators.pattern('^(0[1-9]|1[0-2])\/?([0-9]{2})$')]],
       cvv: ["", [Validators.required, Validators.pattern('^[0-9]{3,4}$')]]
     })
   }

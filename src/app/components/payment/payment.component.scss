@@ -76,5 +76,24 @@
       }
     }
   }
+
+  div.riepilogo{
+    padding: 15px;
+    border: 1px solid gray;
+    border-radius: 15px;
+    div ul li{
+      margin: 10px 0;
+    }
+
+    hr{
+      margin: 15px 0;
+    }
+
+    div.gestione{
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      grid-gap: 15px;
+    }
+  }
 }
 

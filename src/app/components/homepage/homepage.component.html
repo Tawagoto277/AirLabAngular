@@ -1,5 +1,8 @@
-<div *ngFor="let s of sliders,let i = index ">
+<!-- invia gli oggetti al componente slider per poi creare gli slider -->
+
+<div *ngFor="let s of sliders, let i = index">
   <app-slider
     [slider]="s"
-    [title]="titoli[i]"></app-slider>
+    [title]="titoli[i]">
+  </app-slider>
 </div>

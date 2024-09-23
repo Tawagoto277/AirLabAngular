@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Filtro, Prodotto } from '../../models/shoeData';
 import { CartService } from '../../services/cart-service.service';
 import { CartConfirmationComponent } from '../cart-confirmation/cart-confirmation.component';
-import { CardComponent } from '../homepage/card/card.component';
 
 @Component({
   selector: 'app-product',
@@ -13,6 +12,7 @@ import { CardComponent } from '../homepage/card/card.component';
 })
 export class ProductComponent implements OnInit{
 
+  //Per detterminare quale card sara caricata nel carrello
   @ViewChild(CartConfirmationComponent) cartConfirmation!: CartConfirmationComponent;
 
   constructor(
@@ -24,10 +24,13 @@ export class ProductComponent implements OnInit{
   product: Prodotto | null = null;
   paginaId: string | null = null;
 
+  //varibile che tiene conto del colore e taglia
   selectedColor: string | null = null;
   selectedSize: number | null = null;
 
   ngOnInit(): void {
+    //richiama il prdotto per id
+    //l'id viene preso dall'indirizzo - URL
     this.paginaId = this.route.snapshot.paramMap.get('id');
 
     if(this.paginaId){
@@ -35,7 +38,7 @@ export class ProductComponent implements OnInit{
 
       this.sds.getFilteredShoes(filters).subscribe(res => {
         if (Array.isArray(res)) {
-          this.product = res[0]; // Assumendo che la risposta sia un array con un solo elemento
+          this.product = res[0];
         } else {
           this.product = res;
         }
