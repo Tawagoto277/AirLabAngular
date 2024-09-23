@@ -89,8 +89,6 @@ export class ShopComponent implements OnInit{
 
     const matchsNuovoArrivi = this.filters.nuovo_arrivi !== undefined ? product.nuovo_arrivi === this.filters.nuovo_arrivi : true; 
     
-    console.log(product.nome, product.colori_disponibili);
-    
     return matchsName && matchsCategory && matchsColor && matchSize && matchsBSeller && matchsNuovoArrivi;
   });};
 
