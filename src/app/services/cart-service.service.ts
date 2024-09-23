@@ -24,33 +24,50 @@ export class CartService {
   }
 
   //dovrebbe variare la quantita dei prodotti
-  updateCartItem(product: Prodotto, quantity: number, size: number, color: string): void{
+  updateCartItem(product: Prodotto, quantity: number, size: number, color: string): Observable<void> {
     
-    this.http.get<CartItem[]>(this.cartUrl).subscribe(cartItems => {
-      const existItem : CartItem | undefined = cartItems.find(item => 
-        item.idProdotto === product.id && item.colore === color && item.taglia === size);
+    return new Observable<void>((observer) => {
 
-      if(existItem){
-        existItem.quantita += quantity;
-        this.http.put(`${this.cartUrl}/${existItem.id}`, existItem).subscribe();
-      }else{
-        
-        const newItem : CartItem = {
-          id : `${product.id}-${size}-${color}`,
-          idProdotto : product.id,
-          nome: product.nome,
-          categoria: product.categoria,
-          prezzo: product.prezzo,
-          taglia: size,
-          colore: color,
-          descrizione: product.descrizione,
-          immagine: product.immagine,
-          best_seller: product.best_seller,
-          quantita: quantity,
-        };
+      this.http.get<CartItem[]>(this.cartUrl).subscribe(cartItems => {
 
-        this.http.post(this.cartUrl, newItem).subscribe();
-      }
-    })
+        const existItem: CartItem | undefined = cartItems.find(item => 
+          item.idProdotto === product.id && item.colore === color && item.taglia === size);
+  
+        if (existItem) {
+          existItem.quantita += quantity;
+  
+          this.http.put(`${this.cartUrl}/${existItem.id}`, existItem).subscribe({
+            next: () => {
+              observer.next(); 
+              observer.complete();
+            },
+            error: (err) => observer.error(err)
+          });
+        } else {
+
+          const newItem: CartItem = {
+            id: `${product.id}-${size}-${color}`,
+            idProdotto: product.id,
+            nome: product.nome,
+            categoria: product.categoria,
+            prezzo: product.prezzo,
+            taglia: size,
+            colore: color,
+            descrizione: product.descrizione,
+            immagine: product.immagine,
+            best_seller: product.best_seller,
+            quantita: quantity,
+          };
+  
+          this.http.post(this.cartUrl, newItem).subscribe({
+            next: () => {
+              observer.next(); 
+              observer.complete();
+            },
+            error: (err) => observer.error(err)
+          });
+        }
+      });
+    });
   }
 }

@@ -56,10 +56,10 @@ export class ProductComponent implements OnInit{
 
   addToCart(): void{
     if(this.selectedColor && this.selectedSize){
-      this.cs.updateCartItem(this.product!, 1, this.selectedSize, this.selectedColor);
-
-      this.cartConfirmation.product = this.product!;
-      this.cartConfirmation.showConfirmatin();
+      this.cs.updateCartItem(this.product!, 1, this.selectedSize, this.selectedColor).subscribe(()=>{
+        this.cartConfirmation.product = this.product!;
+        this.cartConfirmation.showConfirmatin();
+      });
     }
   }
 };

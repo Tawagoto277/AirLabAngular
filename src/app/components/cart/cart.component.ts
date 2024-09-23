@@ -31,8 +31,9 @@ export class CartComponent implements OnInit{
       if(Array.isArray(item) && item.length > 0){
         const productPrdotto: Prodotto = item[0];
         
-        this.cs.updateCartItem(productPrdotto, 1, taglia, colore);
-        this.loadCartItems();
+        this.cs.updateCartItem(productPrdotto, 1, taglia, colore).subscribe( () => {
+          this.loadCartItems();
+        });
       }
     });
   };
@@ -48,8 +49,9 @@ export class CartComponent implements OnInit{
           if(Array.isArray(UpItem) && UpItem.length > 0){
             const productPrdotto: Prodotto = UpItem[0];
             
-            this.cs.updateCartItem(productPrdotto, -1, item.taglia, item.colore);
-            this.loadCartItems();
+            this.cs.updateCartItem(productPrdotto, -1, item.taglia, item.colore).subscribe( () => {
+              this.loadCartItems();
+            });
           };
         });
       }else{
