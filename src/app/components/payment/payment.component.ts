@@ -19,7 +19,6 @@ export class PaymentComponent implements OnInit{
 
   constructor(private fb: FormBuilder, public cs: CartService){ 
     
-    //per il form 
     this.userForm = this.fb.group({
       nome: ['', [Validators.required]],
       cognome: ['', [Validators.required]],
